@@ -25,9 +25,22 @@ SECRET_KEY = 'django-insecure-hb+2h+0n&e&76r!d@hi#pp%6^-ma1c7sl$l4y5w(m$9*^j)#o8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS =[
+    "http://localhost:4173"
+]
+
+CSRF_TRUSTED_ORIGINS =[
+    "http://localhost:4173"
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SECURE = True
+
+SESSION_COOKIE_HTTPONLY = True
 
 
 # Application definition
@@ -45,8 +58,10 @@ INSTALLED_APPS = [
     'user_app',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -101,6 +116,12 @@ DATABASES = {
 #         'PORT': '5432',
 #     }
 # }
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+        "rest_framework.authentication.TokenAuthentication"
+    ]
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
